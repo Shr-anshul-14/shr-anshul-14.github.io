@@ -25,32 +25,56 @@
     --radius-sm: 8px;
   }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.7;
+  html.dark {
+    --blue: #4a9ede;
+    --blue-light: #1a2f45;
+    --blue-dark: #7ec3f5;
+    --text: #f0f0f0;
+    --text-muted: #a0aab4;
+    --text-faint: #6b7685;
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.15);
   }
 
-  /* NAV */
+  .toggle-label { font-size: 14px; user-select: none; cursor: pointer; }
+  .toggle-track {
+    width: 40px; height: 22px; border-radius: 11px;
+    background: #d1d5db;
+    position: relative; cursor: pointer;
+    transition: background 0.25s;
+    flex-shrink: 0; border: none; outline: none;
+  }
+  html.dark .toggle-track { background: #4a9ede; }
+  .toggle-thumb {
+    position: absolute; top: 3px; left: 3px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; transition: transform 0.25s;
+    pointer-events: none;
+  }
+  html.dark .toggle-thumb { transform: translateX(18px); }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.7;
+    transition: background 0.25s, color 0.25s;
+  }
+
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background: var(--surface); border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     display: flex; align-items: center; justify-content: space-between;
     height: 58px;
   }
   .nav-name { font-size: 15px; font-weight: 600; color: var(--text); text-decoration: none; }
   .nav-links { display: flex; gap: 1.75rem; }
-  .nav-links a {
-    font-size: 13px; color: var(--text-muted); text-decoration: none;
-    transition: color 0.15s;
-  }
+  .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
   .nav-links a:hover { color: var(--blue); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
   .nav-cta {
     font-size: 13px; font-weight: 500;
     background: var(--blue); color: #fff;
@@ -59,12 +83,7 @@
   }
   .nav-cta:hover { background: var(--blue-dark); }
 
-  /* HERO */
-  .hero {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2rem 3rem;
-  }
+  .hero { background: var(--surface); border-bottom: 1px solid var(--border); padding: 4rem 2rem 3rem; }
   .hero-inner { max-width: 760px; margin: 0 auto; }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 6px;
@@ -72,15 +91,9 @@
     background: var(--blue-light); color: var(--blue-dark);
     padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem;
   }
-  .hero h1 {
-    font-size: 32px; font-weight: 600; line-height: 1.25;
-    margin-bottom: 1rem; letter-spacing: -0.3px;
-  }
+  .hero h1 { font-size: 32px; font-weight: 600; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.3px; }
   .hero h1 span { color: var(--blue); }
-  .hero-summary {
-    font-size: 15px; color: var(--text-muted); line-height: 1.75;
-    max-width: 640px; margin-bottom: 2rem;
-  }
+  .hero-summary { font-size: 15px; color: var(--text-muted); line-height: 1.75; max-width: 640px; margin-bottom: 2rem; }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
@@ -99,150 +112,73 @@
     text-decoration: none; transition: border-color 0.15s, color 0.15s;
   }
   .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
-  .hero-stats {
-    display: flex; gap: 2.5rem; flex-wrap: wrap;
-    padding-top: 2rem; border-top: 1px solid var(--border);
-  }
+  .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
   .stat-num { font-size: 24px; font-weight: 600; color: var(--blue); }
   .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
-  /* CONTACT BAR */
   .contact-bar {
     background: var(--blue); color: #fff;
     display: flex; align-items: center; justify-content: center;
-    gap: 2rem; flex-wrap: wrap;
-    padding: 0.75rem 2rem; font-size: 13px;
+    gap: 2rem; flex-wrap: wrap; padding: 0.75rem 2rem; font-size: 13px;
   }
-  .contact-bar a {
-    color: rgba(255,255,255,0.9); text-decoration: none;
-    display: flex; align-items: center; gap: 6px;
-    transition: color 0.15s;
-  }
+  .contact-bar a { color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
   .contact-bar a:hover { color: #fff; }
   .contact-bar svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-  /* SECTIONS */
   .section { padding: 3rem 2rem; }
   .section-inner { max-width: 760px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--text-faint);
-    margin-bottom: 1.75rem;
-  }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 1.75rem; }
   .section-alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-  /* EXPERIENCE */
   .job-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    background: var(--surface);
-    transition: box-shadow 0.15s;
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; margin-bottom: 1rem;
+    background: var(--surface); transition: box-shadow 0.15s;
   }
   .job-card:last-child { margin-bottom: 0; }
   .job-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
   .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
-  .job-left {}
   .job-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
   .job-company { font-size: 13px; color: var(--blue); font-weight: 500; }
   .job-right { text-align: right; flex-shrink: 0; }
   .job-date { font-size: 12px; color: var(--text-muted); }
   .job-location { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
   .job-bullets { padding-left: 1.1rem; margin-top: 0.75rem; }
-  .job-bullets li {
-    font-size: 13.5px; color: var(--text-muted); line-height: 1.65;
-    margin-bottom: 0.4rem;
-  }
+  .job-bullets li { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 0.4rem; }
   .job-bullets li:last-child { margin-bottom: 0; }
   .job-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
-  .tag {
-    font-size: 11.5px; padding: 3px 10px;
-    border-radius: 20px; background: var(--bg);
-    color: var(--text-muted); border: 1px solid var(--border);
-  }
+  .tag { font-size: 11.5px; padding: 3px 10px; border-radius: 20px; background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
 
-  /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-  .skill-group {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 1.25rem;
-  }
-  .skill-group-title {
-    font-size: 12px; font-weight: 600; color: var(--text-muted);
-    text-transform: uppercase; letter-spacing: 0.06em;
-    margin-bottom: 0.875rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .skill-group-icon {
-    width: 22px; height: 22px;
-    background: var(--blue-light); border-radius: 5px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+  .skill-group-title { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.875rem; display: flex; align-items: center; gap: 8px; }
+  .skill-group-icon { width: 22px; height: 22px; background: var(--blue-light); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
   .skill-group-icon svg { width: 13px; height: 13px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .pill {
-    font-size: 12px; padding: 4px 11px;
-    background: var(--blue-light); color: var(--blue-dark);
-    border-radius: 20px; font-weight: 500;
-  }
+  .pill { font-size: 12px; padding: 4px 11px; background: var(--blue-light); color: var(--blue-dark); border-radius: 20px; font-weight: 500; }
 
-  /* CERTIFICATIONS */
   .cert-list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .cert-item {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 1rem 1.25rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .cert-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--blue); flex-shrink: 0;
-  }
+  .cert-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; }
+  .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
   .cert-name { font-size: 13.5px; font-weight: 500; }
   .cert-issuer { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
 
-  /* EDUCATION */
-  .edu-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 1.5rem;
-    display: flex; align-items: flex-start; gap: 1rem;
-  }
-  .edu-icon {
-    width: 44px; height: 44px; border-radius: var(--radius-sm);
-    background: var(--blue-light);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+  .edu-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .edu-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .edu-degree { font-size: 15px; font-weight: 600; }
   .edu-school { font-size: 13px; color: var(--blue); font-weight: 500; margin-top: 2px; }
   .edu-meta { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-  /* RESUME DOWNLOAD */
-  .resume-section {
-    background: var(--blue); border-radius: var(--radius);
-    padding: 2rem; text-align: center; color: #fff;
-  }
+  .resume-section { background: var(--blue); border-radius: 12px; padding: 2rem; text-align: center; color: #fff; }
   .resume-section h3 { font-size: 18px; font-weight: 600; margin-bottom: 0.5rem; }
   .resume-section p { font-size: 14px; opacity: 0.85; margin-bottom: 1.5rem; }
-  .btn-white {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #fff; color: var(--blue);
-    padding: 11px 22px; border-radius: 8px;
-    font-size: 14px; font-weight: 600; text-decoration: none;
-    transition: opacity 0.15s;
-  }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--blue); padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
   .btn-white:hover { opacity: 0.9; }
   .btn-white svg { width: 16px; height: 16px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* FOOTER */
-  footer {
-    background: var(--surface); border-top: 1px solid var(--border);
-    padding: 1.5rem 2rem; text-align: center;
-    font-size: 12px; color: var(--text-faint);
-  }
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(--text-faint); }
 
-  /* RESPONSIVE */
   @media (max-width: 640px) {
     nav { padding: 0 1rem; }
     .nav-links { display: none; }
@@ -258,7 +194,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-name" href="#">Anshul Shresth</a>
   <div class="nav-links">
@@ -268,10 +203,15 @@
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
-  <a class="nav-cta" href="#contact">Hire me</a>
+  <div class="nav-right">
+    <button class="toggle-track" id="themeToggle" aria-label="Toggle dark mode">
+      <div class="toggle-thumb"></div>
+    </button>
+    <span class="toggle-label" id="toggleLabel">🌙</span>
+    <a class="nav-cta" href="#contact">Hire me</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="about">
   <div class="hero-inner">
     <div class="hero-eyebrow">
@@ -279,9 +219,7 @@
       Bengaluru, Karnataka
     </div>
     <h1>Anshul Shresth —<br><span>Customer Success & Business Analyst</span></h1>
-    <p class="hero-summary">
-      Customer-focused business professional with 2+ years of experience in customer engagement, account management, and consultative selling across EdTech, marketplace, and SaaS-driven environments. Skilled in onboarding customers, driving product adoption, and translating data insights into business outcomes.
-    </p>
+    <p class="hero-summary">Customer-focused business professional with 2+ years of experience in customer engagement, account management, and consultative selling across EdTech, marketplace, and SaaS-driven environments. Skilled in onboarding customers, driving product adoption, and translating data insights into business outcomes.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="mailto:anshul.shresth14@gmail.com">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -293,27 +231,14 @@
       </a>
     </div>
     <div class="hero-stats">
-      <div>
-        <div class="stat-num">2+</div>
-        <div class="stat-label">Years experience</div>
-      </div>
-      <div>
-        <div class="stat-num">₹3.5 Cr</div>
-        <div class="stat-label">Revenue generated</div>
-      </div>
-      <div>
-        <div class="stat-num">180%</div>
-        <div class="stat-label">Target achievement</div>
-      </div>
-      <div>
-        <div class="stat-num">B.E.</div>
-        <div class="stat-label">Computer Science</div>
-      </div>
+      <div><div class="stat-num">2+</div><div class="stat-label">Years experience</div></div>
+      <div><div class="stat-num">₹3.5 Cr</div><div class="stat-label">Revenue generated</div></div>
+      <div><div class="stat-num">180%</div><div class="stat-label">Target achievement</div></div>
+      <div><div class="stat-num">B.E.</div><div class="stat-label">Computer Science</div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT BAR -->
 <div class="contact-bar">
   <a href="tel:+918804380831">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
@@ -329,7 +254,6 @@
   </a>
 </div>
 
-<!-- EXPERIENCE -->
 <section class="section" id="experience">
   <div class="section-inner">
     <p class="section-label">Work Experience</p>
@@ -391,7 +315,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section class="section section-alt" id="skills">
   <div class="section-inner">
     <p class="section-label">Skills & Tools</p>
@@ -399,9 +322,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           Customer Success
         </div>
         <div class="pills">
@@ -415,9 +336,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           Account Management
         </div>
         <div class="pills">
@@ -431,9 +350,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
           Analytics & BI
         </div>
         <div class="pills">
@@ -447,9 +364,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           Sales & BD
         </div>
         <div class="pills">
@@ -463,9 +378,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
           Tools & Platforms
         </div>
         <div class="pills">
@@ -479,9 +392,7 @@
 
       <div class="skill-group">
         <div class="skill-group-title">
-          <div class="skill-group-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
+          <div class="skill-group-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           Professional Skills
         </div>
         <div class="pills">
@@ -497,51 +408,34 @@
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
 <section class="section" id="certifications">
   <div class="section-inner">
     <p class="section-label">Certifications</p>
     <div class="cert-list">
       <div class="cert-item">
         <div class="cert-dot"></div>
-        <div>
-          <div class="cert-name">Business Intelligence Concepts, Tools, and Applications</div>
-          <div class="cert-issuer">University of Colorado System</div>
-        </div>
+        <div><div class="cert-name">Business Intelligence Concepts, Tools, and Applications</div><div class="cert-issuer">University of Colorado System</div></div>
       </div>
       <div class="cert-item">
         <div class="cert-dot"></div>
-        <div>
-          <div class="cert-name">Business Intelligence and Data Analytics: Generate Insights</div>
-          <div class="cert-issuer">Jan 2026 – May 2026</div>
-        </div>
+        <div><div class="cert-name">Business Intelligence and Data Analytics: Generate Insights</div><div class="cert-issuer">Jan 2026 – May 2026</div></div>
       </div>
       <div class="cert-item">
         <div class="cert-dot"></div>
-        <div>
-          <div class="cert-name">Foundations of Cybersecurity</div>
-          <div class="cert-issuer">Google</div>
-        </div>
+        <div><div class="cert-name">Foundations of Cybersecurity</div><div class="cert-issuer">Google</div></div>
       </div>
       <div class="cert-item">
         <div class="cert-dot"></div>
-        <div>
-          <div class="cert-name">Data Mining Fundamentals</div>
-          <div class="cert-issuer">NPTEL</div>
-        </div>
+        <div><div class="cert-name">Data Mining Fundamentals</div><div class="cert-issuer">NPTEL</div></div>
       </div>
       <div class="cert-item">
         <div class="cert-dot"></div>
-        <div>
-          <div class="cert-name">API Beginner Learning Path</div>
-          <div class="cert-issuer">Postman</div>
-        </div>
+        <div><div class="cert-name">API Beginner Learning Path</div><div class="cert-issuer">Postman</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section class="section section-alt" id="education">
   <div class="section-inner">
     <p class="section-label">Education</p>
@@ -558,7 +452,6 @@
   </div>
 </section>
 
-<!-- RESUME DOWNLOAD -->
 <section class="section">
   <div class="section-inner">
     <div class="resume-section">
@@ -572,32 +465,26 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section section-alt" id="contact">
   <div class="section-inner">
     <p class="section-label">Contact / Hire Me</p>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem;">
-
       <div class="job-card" style="margin-bottom:0;">
         <div style="font-size:12px; color:var(--text-faint); margin-bottom:6px;">Email</div>
         <a href="mailto:anshul.shresth14@gmail.com" style="font-size:14px; font-weight:500; color:var(--blue); text-decoration:none;">anshul.shresth14@gmail.com</a>
       </div>
-
       <div class="job-card" style="margin-bottom:0;">
         <div style="font-size:12px; color:var(--text-faint); margin-bottom:6px;">Phone</div>
         <a href="tel:+918804380831" style="font-size:14px; font-weight:500; color:var(--text); text-decoration:none;">+91 88043 80831</a>
       </div>
-
       <div class="job-card" style="margin-bottom:0;">
         <div style="font-size:12px; color:var(--text-faint); margin-bottom:6px;">LinkedIn</div>
         <a href="https://linkedin.com/in/anshul-shresth-862ba3235" target="_blank" rel="noopener" style="font-size:14px; font-weight:500; color:var(--blue); text-decoration:none;">linkedin.com/in/anshul-shresth</a>
       </div>
-
       <div class="job-card" style="margin-bottom:0;">
         <div style="font-size:12px; color:var(--text-faint); margin-bottom:6px;">Open to roles</div>
         <div style="font-size:13px; font-weight:500; color:var(--text);">Business Analyst · Customer Success · Implementation Consultant · RevOps</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -606,5 +493,16 @@
   &copy; 2026 Anshul Shresth &nbsp;·&nbsp; Bengaluru, India
 </footer>
 
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const label = document.getElementById('toggleLabel');
+  const html = document.documentElement;
+  if (localStorage.getItem('theme') === 'dark') { html.classList.add('dark'); label.textContent = '☀️'; }
+  toggle.addEventListener('click', () => {
+    const isDark = html.classList.toggle('dark');
+    label.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
 </body>
 </html>
